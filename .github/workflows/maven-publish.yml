@@ -43,5 +43,4 @@ jobs:
     - name: Push to Docker Hub
       if: github.ref == 'refs/heads/master'
       run: |
-        docker tag deployment-demo:0.0.1-SNAPSHOT pavankalyan0499/deployment-demo:0.0.1-SNAPSHOT
         docker push pavankalyan0499/deployment-demo:0.0.1-SNAPSHOT 
