@@ -31,6 +31,9 @@ jobs:
     - name: Build
       run: mvn clean package install
 
+    - name: build image
+      run: mvn spring-boot:build-image
+
     - name: Test
       run: mvn test
       
@@ -45,9 +48,6 @@ jobs:
       
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v3
-
-    - name: Validate build configuration
-      run: mvn spring-boot:build-image
 
     - name: Image Push
       uses: docker/build-push-action@v6
