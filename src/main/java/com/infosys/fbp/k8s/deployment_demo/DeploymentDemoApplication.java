@@ -16,6 +16,7 @@ public class DeploymentDemoApplication {
 		SpringApplication.run(DeploymentDemoApplication.class, args);
 	}
 
+
 	@GetMapping("/ping")
 	public ResponseEntity<String> getPing() {
 		return ResponseEntity.ok("Success from Deployment Demo");
