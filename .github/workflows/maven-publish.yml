@@ -27,6 +27,13 @@ jobs:
         server-id: github # Value of the distributionManagement/repository/id field of the pom.xml
         settings-path: ${{ github.workspace }} # location for the settings.xml file
 
+    - name: Extract version from pom.xml
+      id: get_version
+      run: |
+        VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+        echo "VERSION=$VERSION" >> $GITHUB_OUTPUT
+        echo "Extracted version: $VERSION"
+
     - name: Build
       run: mvn clean package install
 
@@ -42,4 +49,4 @@ jobs:
     - name: Push to Docker Hub
       if: github.ref == 'refs/heads/master'
       run: |
-        docker push pavankalyan0499/deployment-demo:0.0.2-SNAPSHOT
+        docker push pavankalyan0499/deployment-demo:${{ steps.get_version.outputs.VERSION }}
