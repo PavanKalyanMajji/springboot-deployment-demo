@@ -30,18 +30,19 @@ jobs:
     - name: Build
       run: mvn clean package install
 
-  docker-build:
     - name: build image
       run: mvn spring-boot:build-image
 
   docker-login:
+    runs-on: ubuntu-latest
+    steps:
+
     - name: Docker Login
       uses: docker/login-action@v3
       with:
        username: ${{ secrets.DOCKERHUB_USERNAME }}
        password: ${{ secrets.DOCKERHUB_TOKEN }}
 
-  docker-image-push:
     - name: Push to Docker Hub
       if: github.ref == 'refs/heads/master'
       run: |
