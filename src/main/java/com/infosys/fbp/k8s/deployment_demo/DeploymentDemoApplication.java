@@ -19,7 +19,7 @@ public class DeploymentDemoApplication {
 
 	@GetMapping("/ping")
 	public ResponseEntity<String> getPing() {
-		return ResponseEntity.ok("Success from Deployment Demo");
+		return ResponseEntity.ok("Welcome To My Page Mr. Pavan Kalyan Here");
 	}
 
 }
